@@ -1,4 +1,9 @@
 import app from "./app";
-import { PORT } from "./myenvs";
+import { API_URL, PORT } from "./myenvs";
+import connectDB from "./database";
 
-app.listen(PORT)
+connectDB();
+
+app.listen(PORT, () => {
+  console.log(`Aplicacion escuchando en ${API_URL}`);
+});
