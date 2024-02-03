@@ -1,6 +1,10 @@
-import express from 'express'
+import express from "express";
+import routerAuth from "./routes/auth.route";
+import cors from "cors";
 
-const app = express()
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use("/auth", routerAuth);
 
-
-export default app
+export default app;
