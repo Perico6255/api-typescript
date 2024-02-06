@@ -11,16 +11,3 @@ export const autheticationMiddleware: Middleware = (
   console.log(cookies);
   next();
 };
-export const hashPasswordMiddleware: Middleware = async (
-  req,
-  res: Response,
-  next,
-) => {
-  try {
-    req.body.password = await hashPassword(req.body.password);
-    next();
-  } catch {
-    res.status(500).json({ message: "error hashing passwords" });
-  }
-  res.status(500).json({ message: "error hashing passwords" });
-};
