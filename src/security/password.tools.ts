@@ -1,11 +1,11 @@
 import { compare, hash } from "bcryptjs";
 import { SALT_ROUNDS } from "../myenvs";
 
-const hashPassword = async (password: string): Promise<string> => {
+export const hashPassword = async (password: string): Promise<string> => {
   return await hash(password, SALT_ROUNDS);
 };
 
-const comparePassword = async (
+export const comparePassword = async (
   password: string,
   hashPassword: string,
 ): Promise<boolean> => {
