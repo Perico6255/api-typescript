@@ -1,14 +1,17 @@
 import { Router } from "express";
-import { singin, singup } from "../controllers/user.controller";
-import { loginSchema } from "../validations/auth.validations";
-import { loginValidatorMiddleware } from "../middlewares/user.middlewares";
+import {
+  loginController,
+  registerController,
+} from "../controllers/user.controller";
+import {
+  loginValidatorMiddleware,
+  registerValidatorMiddleware,
+} from "../middlewares/user.middlewares";
 
 const router = Router();
 
-router.post("/login", loginValidatorMiddleware, (req, res) => {
-  res.send("hola login");
-});
+router.post("/login", loginValidatorMiddleware, loginController);
 // router.post("/login", singup);
-router.post("/register", singin);
+router.post("/register", registerValidatorMiddleware, registerController);
 
 export default router;

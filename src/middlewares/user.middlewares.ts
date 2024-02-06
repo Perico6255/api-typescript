@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { loginSchema } from "../validations/auth.validations";
+import { loginSchema, registerSchema } from "../validations/auth.validations";
 import { Schema } from "zod";
 
 const validatorMiddleware = (shema: Schema) => {
@@ -14,3 +14,4 @@ const validatorMiddleware = (shema: Schema) => {
 };
 
 export const loginValidatorMiddleware = validatorMiddleware(loginSchema);
+export const registerValidatorMiddleware = validatorMiddleware(registerSchema);
