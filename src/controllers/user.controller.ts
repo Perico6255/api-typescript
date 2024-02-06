@@ -32,7 +32,7 @@ export const registerController = async (req: Request, res: Response) => {
   try {
     const user = await User.findOne({ email: email });
     if (user) {
-      return res.send("existe el email");
+      return res.status(400).json({message:"existe el email"});
     }
   } catch (error) {
     return res.status(500).send(error);
@@ -44,9 +44,10 @@ export const registerController = async (req: Request, res: Response) => {
       email: email,
       password: password,
     });
+    user.save()
     const token = createToken({ sub: user.id });
     res.cookie("Authorization", token);
-    res.json({ message: "logged" });
+    res.json({ message: "register, the token is in the cookies" });
   } catch (error) {
     res.status(500).send(error);
   }
